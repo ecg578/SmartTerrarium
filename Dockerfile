@@ -11,8 +11,12 @@ COPY . .
 # Instala las dependencias
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expone el puerto de la aplicación
+# Copia el script de inicio
+COPY start.sh start.sh
+RUN chmod +x start.sh
+
+# Expone el puerto 8080 para Flask
 EXPOSE 8080
 
-# Comando para ejecutar la aplicación
-CMD ["python", "app.py"]
+# Comando para iniciar ambos servicios
+CMD ["./start.sh"]
